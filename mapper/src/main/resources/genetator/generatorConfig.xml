@@ -32,6 +32,6 @@
         <javaClientGenerator targetPackage="shu.java.csky.dao" targetProject="src/main/java" type="XMLMAPPER"/>
 
         <!-- 配置需要指定生成的数据库和表，% 代表所有表 -->
-        <table tableName="%"/>
+        <table tableName="user"/>
     </context>
 </generatorConfiguration>
