@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import shu.java.csky.UserService;
+import shu.java.csky.entity.User;
 import shu.java.csky.vo.ResStatus;
 import shu.java.csky.vo.ResultVO;
 
@@ -39,19 +40,18 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(dataType = "string", name = "username", value = "用户注册账号", required = true),
             @ApiImplicitParam(dataType = "string", name = "password", value = "用户注册密码", required = true),
-            @ApiImplicitParam(dataType = "string", name = "email", value = "用户注册邮箱(激活用)", required = true)
+            @ApiImplicitParam(dataType = "string", name = "userEmail", value = "用户注册邮箱(激活用)", required = true)
     })
     @PostMapping("/register")
-    public ResultVO register(@RequestParam("username") String name,
-                             @RequestParam(value = "password") String pwd,
-                             @RequestParam(value = "email") String email) {
-        ResultVO resultVO = userService.userRegister(name, pwd, email);
+    public ResultVO register(@RequestBody User user) {
+        ResultVO resultVO = userService.userRegister(user.getUsername(), user.getPassword(), user.getUserEmail());
         return resultVO;
     }
 
     @ApiOperation("校验用户是否激活接口")
-    @GetMapping("/active")
-    public ResultVO userActive(@RequestParam("code") String code) {
+    @ApiImplicitParam(dataType = "string", name = "code", value = "用户激活码", required = true)
+    @GetMapping("/active/{code}")
+    public ResultVO userActive(@PathVariable("code") String code) {
         if (code != null) {
             //2.调用service完成激活
             return userService.active(code);

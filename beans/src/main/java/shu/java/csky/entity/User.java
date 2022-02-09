@@ -1,8 +1,18 @@
 package shu.java.csky.entity;
 
-import java.util.Date;
-import javax.persistence.*;
+import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.util.Date;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ApiModel(value = "User对象", description = "User对象")
 public class User {
     /**
      * 主键id;用户id
