@@ -7,29 +7,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
+/**
+ * @author 20121706
+ */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@TableName("articles")
-public class Articles {
-    /**
-     * id
-     */
+@NoArgsConstructor
+@TableName("emailCode")
+public class EmailCode {
     @TableId(type = IdType.AUTO)
-    private Integer id;
-
-    /**
-     * 与主表链接的aid
-     */
-    private Integer aid;
-
-    /**
-     * 帖子标题
-     */
-    private String title;
-
-    /**
-     * 内容
-     */
-    private String content;
+    private String eid;
+    private String email;
+    private String code;
+    private Date createTime;
 }

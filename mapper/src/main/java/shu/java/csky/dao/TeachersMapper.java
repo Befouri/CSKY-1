@@ -1,7 +1,8 @@
 package shu.java.csky.dao;
 
-import shu.java.csky.entity.Teachers;
-import shu.java.csky.general.GeneralDAO;
 
-public interface TeachersMapper extends GeneralDAO<Teachers> {
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import shu.java.csky.entity.Teachers;
+
+public interface TeachersMapper extends BaseMapper<Teachers> {
 }

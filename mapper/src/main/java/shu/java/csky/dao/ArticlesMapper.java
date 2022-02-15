@@ -1,7 +1,7 @@
 package shu.java.csky.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import shu.java.csky.entity.Articles;
-import shu.java.csky.general.GeneralDAO;
 
-public interface ArticlesMapper extends GeneralDAO<Articles> {
+public interface ArticlesMapper extends BaseMapper<Articles> {
 }

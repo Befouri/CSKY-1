@@ -1,6 +1,7 @@
 package shu.java.csky;
 
 
+import shu.java.csky.entity.User;
 import shu.java.csky.vo.ResultVO;
 
 public interface UserService {
@@ -11,6 +12,5 @@ public interface UserService {
     //用户登录
     ResultVO checkLogin(String name, String pwd);
 
-    ResultVO active(String code);
-
+    User findUserById(String userId);
 }
