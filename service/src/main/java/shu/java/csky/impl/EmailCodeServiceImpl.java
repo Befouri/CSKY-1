@@ -22,11 +22,12 @@ public class EmailCodeServiceImpl implements EmailCodeService {
 
     /**
      * 生成6位数验证码
+     *
      * @return
      */
     private String createCode() {
         char[] code = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2',
+                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2',
                 '3', '4', '5', '6', '7', '8', '9'};
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -36,25 +37,30 @@ public class EmailCodeServiceImpl implements EmailCodeService {
         return sb.toString();
     }
 
+    /**
+     * 1. 已经注册过的不能再注册
+     * 2. 验证码的时效问题
+     *
+     * @param email
+     * @return
+     */
     @Override
     public ResultVO sendCode(String email) {
         EmailCode emailCode = new EmailCode();
         emailCode.setCode(createCode());
         emailCode.setEmail(email);
         try {
-            MailUtil.sendCode(email, emailCode.getCode() , "计算机考研网邮箱验证码");
+            MailUtil.sendCode(email, emailCode.getCode(), "计算机考研网邮箱验证码");
         } catch (Exception e) {
-            System.out.println("邮箱验证码发送失败！");
-            e.printStackTrace();
-            return new ResultVO(ResStatus.NO, "验证码发送失败！", null);
+            throw new RuntimeException("邮箱验证码发送失败！");
         }
         try {
             emailCodeMapper.insert(emailCode);
             QueryWrapper<EmailCode> wrapper = new QueryWrapper<>();
             wrapper.eq("code", emailCode.getCode());
             EmailCode emailCode1 = emailCodeMapper.selectOne(wrapper);
-            System.out.println(emailCode1);
-            return new ResultVO(ResStatus.OK, "验证码发送成功！", emailCodeMapper.selectOne(wrapper));
+            emailCode1.setCode(null);
+            return new ResultVO(ResStatus.OK, "验证码发送成功！", emailCode1);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultVO(ResStatus.NO, "验证码发送失败！", null);
@@ -64,7 +70,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     @Override
     public ResultVO checkCode(String code, String eid) {
         EmailCode emailCode = emailCodeMapper.selectById(eid);
-        if(emailCode.getCode().equals(code)) {
+        if (emailCode.getCode().equals(code)) {
             return new ResultVO(ResStatus.OK, "验证码正确！", null);
         }
         return new ResultVO(ResStatus.NO, "验证码错误！", null);

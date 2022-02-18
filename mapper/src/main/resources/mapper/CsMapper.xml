@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shu.java.csky.dao.CsMapper">
+
+    <resultMap id="BaseResultMap" type="shu.java.csky.entity.Cs">
+            <id property="csid" column="csid" jdbcType="INTEGER"/>
+            <result property="collegecode" column="collegecode" jdbcType="VARCHAR"/>
+            <result property="collegename" column="collegename" jdbcType="VARCHAR"/>
+            <result property="professioncode" column="professioncode" jdbcType="VARCHAR"/>
+            <result property="professionname" column="professionname" jdbcType="VARCHAR"/>
+            <result property="studyway" column="studyway" jdbcType="VARCHAR"/>
+            <result property="degreetype" column="degreetype" jdbcType="VARCHAR"/>
+            <result property="articleurl" column="articleURL" jdbcType="VARCHAR"/>
+            <result property="politic" column="politic" jdbcType="VARCHAR"/>
+            <result property="english" column="english" jdbcType="VARCHAR"/>
+            <result property="professionalSubject1" column="professional_subject1" jdbcType="VARCHAR"/>
+            <result property="professionalSubject2" column="professional_subject2" jdbcType="VARCHAR"/>
+            <result property="total" column="total" jdbcType="VARCHAR"/>
+            <result property="schoolid" column="schoolid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        csid,collegecode,collegename,
+        professioncode,professionname,studyway,
+        degreetype,articleURL,politic,
+        english,professional_subject1,professional_subject2,
+        total,schoolid
+    </sql>
+</mapper>
