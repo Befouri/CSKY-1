@@ -10,27 +10,3 @@ spring:
       username: root
       password: qlwILj]MXp^sKi3GBy1Wr
       driver-class-name: com.mysql.cj.jdbc.Driver
-  # 热部署配置
-  devtools:
-    restart:
-      enabled: true
-      # 设置重启的目录，添加目录的文件需要restart
-      additional-paths: src/main/java
-      # 解决项目自动重新编译后接口报404的问题
-      poll-interval: 3000
-      quiet-period: 1000
-
-mybatis-plus:
-  # 指定 mybatis 自定义的接口配置文件的路径
-  mapper-locations: classpath:mappers/*Mapper.xml
-  # 配置 mybatis 扫描类的别名，这样指定对应的类时，只需要写类名即可
-  type-aliases-package: shu.java.csky.entity
-  configuration:
-    # 开启驼峰映射
-    map-underscore-to-camel-case: true
-  global-config:
-    db-config:
-      #      # 设置数据表名的前缀
-      #      table-prefix: tb_
-      # 设置id自增
-      id-type: auto

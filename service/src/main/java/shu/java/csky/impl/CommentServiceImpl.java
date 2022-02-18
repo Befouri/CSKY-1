@@ -19,9 +19,9 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
     @Resource
-    CommentMapper commentMapper;
+    private CommentMapper commentMapper;
     @Resource
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Override
     public ResultVO getCommentByArticleId(String articleId) {

@@ -3,25 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shu.java.csky.dao.CommentMapper">
-
-    <resultMap id="BaseResultMap" type="shu.java.csky.entity.Comment">
-        <id property="id" column="id" jdbcType="VARCHAR"/>
-        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
-        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
-        <result property="articleId" column="article_id" jdbcType="VARCHAR"/>
-        <result property="articleTitle" column="article_title" jdbcType="VARCHAR"/>
-        <result property="parentCommentId" column="parent_comment_id" jdbcType="VARCHAR"/>
-        <result property="parentCommentUserId" column="parent_comment_user_id" jdbcType="VARCHAR"/>
-        <result property="replyCommentId" column="reply_comment_id" jdbcType="VARCHAR"/>
-        <result property="replyCommentUserId" column="reply_comment_user_id" jdbcType="VARCHAR"/>
-        <result property="commentLevel" column="comment_level" jdbcType="TINYINT"/>
-        <result property="content" column="content" jdbcType="VARCHAR"/>
-        <result property="status" column="status" jdbcType="TINYINT"/>
-        <result property="praiseNum" column="praise_num" jdbcType="INTEGER"/>
-        <result property="topStatus" column="top_status" jdbcType="TINYINT"/>
-        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-    </resultMap>
-
     <resultMap id="CommentVoMap" type="shu.java.csky.vo.CommentVo">
         <id property="id" column="comment_id1" jdbcType="VARCHAR"/>
         <result property="userId" column="comment_user_id1" jdbcType="VARCHAR"/>
@@ -66,7 +47,7 @@
         praise_num,top_status,create_time
     </sql>
 
-    <select id="getAllByArticleId" resultMap="CommentVoMap">
+    <select id="getAllByArticleId" resultMap="CommentVoMap" parameterType="string">
         select c1.id                     'comment_id1',
                c1.user_id                'comment_user_id1',
                c1.user_name              'comment_user_name1',

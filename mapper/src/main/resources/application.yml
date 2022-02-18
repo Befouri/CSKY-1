@@ -1,23 +1,6 @@
-spring:
-  datasource:
-    druid:
-      url: jdbc:mysql://47.100.249.168:3306/csky?useSSL=false&serverTimezone=UTC
-      username: root
-      password: qlwILj]MXp^sKi3GBy1Wr
-      driver-class-name: CommentAtom.mysql.cj.jdbc.Driver
-  # 热部署配置
-  devtools:
-    restart:
-      enabled: true
-      # 设置重启的目录，添加目录的文件需要restart
-      additional-paths: src/main/java
-      # 解决项目自动重新编译后接口报404的问题
-      poll-interval: 3000
-      quiet-period: 1000
-
 mybatis-plus:
   # 指定 mybatis 自定义的接口配置文件的路径
-  mapper-locations: classpath*:mapper/*Mapper.xml
+  mapper-locations: classpath:mapper/*Mapper.xml
   # 配置 mybatis 扫描类的别名，这样指定对应的类时，只需要写类名即可
   type-aliases-package: shu.java.csky.entity, shu.java.csky.vo
   configuration:
